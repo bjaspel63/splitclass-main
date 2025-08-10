@@ -1,1 +1,107 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SplitClass - Live Classroom</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div id="appTitle">SplitClass Live Classroom</div>
+      <div id="joinedInfo">
+        <div id="nameContainer">
+          Name: <span id="displayName"></span>
+        </div>
+        <div id="roomContainer">
+          Room: <span id="displayRoom"></span>
+        </div>
+      </div>
+      <div id="roomNameDisplay" style="display:none; font-weight:bold; margin-top:6px; color:#f3f4f6;"></div>
+    </header>
+
+    <!-- Setup Section -->
+    <section id="setup">
+      <h1>Join a Live Classroom</h1>
+
+      <div class="input-group">
+        <label for="roomInput">Room Name</label>
+        <input id="roomInput" type="text" placeholder="Enter room name" autocomplete="off" />
+      </div>
+
+      <div class="input-group" id="studentNameGroup">
+        <label for="studentNameInput">Your Name</label>
+        <input id="studentNameInput" type="text" placeholder="Enter your name" autocomplete="off" />
+      </div>
+
+      <div class="buttons">
+        <button id="btnTeacher">Join as Teacher</button>
+        <button id="btnStudent">Join as Student</button>
+      </div>
+
+      <div class="status-text" id="status"></div>
+    </section>
+
+    <!-- Main Section -->
+    <section id="main" class="hidden">
+      <!-- Left Pane: Video (for students) or Student List (for teacher) -->
+      <div id="leftPane">
+        <video id="video" autoplay playsinline muted></video>
+
+        <div id="studentsListContainer" class="hidden">
+          <h2>Students Connected (<span id="studentCountDisplay">0</span>)</h2>
+          <ul id="studentsList"></ul>
+        </div>
+      </div>
+
+      <!-- Right Pane: Dynamic content based on teacher's choice -->
+      <div id="rightPane">
+        <!-- Teacher controls -->
+        <div id="teacherControls" class="hidden">
+          <label for="contentSelect" style="font-weight:600; margin-right:8px; user-select:none;">Content Type:</label>
+          <select id="contentSelect" style="padding:4px 8px; border-radius:6px; border:1.5px solid #cbd5e1; font-size:1rem;">
+            <option value="notes">Notes</option>
+            <option value="pdf">PDF</option>
+            <option value="link">Custom Link</option>
+          </select>
+
+          <input
+            id="customLinkInput"
+            type="url"
+            placeholder="Paste URL here"
+            style="margin-left:12px; padding:4px 8px; border-radius:6px; border:1.5px solid #cbd5e1; font-size:1rem; width: 300px; display:none;"
+          />
+
+          <button id="btnClearPdf" style="margin-left:12px; display:none; padding:0.5rem 1rem; border:none; border-radius:6px; background:#dc2626; color:#fff; cursor:pointer;">Clear PDF</button>
+        </div>
+
+        <!-- Notes Text Area -->
+        <textarea id="notesArea" placeholder="Type your notes here..."></textarea>
+
+        <!-- PDF Viewer Container -->
+        <div id="pdfViewerContainer" class="hidden" style="height:100%; border:1px solid #ccc;">
+          <embed id="pdfViewer" type="application/pdf" width="100%" height="100%" />
+        </div>
+
+        <!-- Iframe for Custom Links (YouTube, Google Docs, etc.) -->
+        <iframe id="customIframe" class="hidden" style="width:100%; height:100%; border:none; border-radius: 12px;"></iframe>
+
+        <!-- Student controls -->
+        <div id="studentControls" class="hidden" style="margin-top: 12px;">
+          <button id="btnCloseSessionStudent">Leave Session</button>
+        </div>
+
+        <!-- Teacher controls buttons -->
+        <div id="teacherControls" class="hidden" style="margin-top: 12px; display:flex; gap: 8px;">
+          <button id="btnShareScreen" disabled>Share Screen</button>
+          <button id="btnCloseSessionTeacher">Close Session</button>
+          <button id="btnDownloadNotes">Download Notes</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
