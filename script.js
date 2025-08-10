@@ -1,4 +1,4 @@
-const wsUrl = "wss://your-signaling-server-url"; // Replace with your server URL
+const wsUrl = "wss://splitclass-main-production.up.railway.app";
 let socket = null;
 let role = null; // 'teacher' or 'student'
 let room = null;
